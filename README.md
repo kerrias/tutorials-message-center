@@ -1,6 +1,5 @@
 BITS "Message Center" Tutorial
 ---
-
 This tutorial shows how to use the MessageCenter subsystem in the BITS stack.
 
 - [Objective](#objective)
