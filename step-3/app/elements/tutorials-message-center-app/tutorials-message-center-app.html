@@ -1,0 +1,65 @@
+<!--
+   Copyright 2017 LGS Innovations
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../base-message-center/base-message-center.html">
+
+<dom-module id="tutorials-message-center-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <base-message-center id="messageCenter"></base-message-center>
+
+  </template>
+  <script>
+  (() => {
+    'use strict';
+
+    function getBitsSystemId(messageCenter) {
+      return messageCenter.sendRequest('base#System bitsId')
+      .then((systemId) => {
+        console.log(`BITS id is ${systemId}.`);
+      })
+      .catch((err) => {
+        console.error('Failed to get the BITS system id:', err);
+      });
+    }
+
+    function getCatList(messageCenter) {
+      return messageCenter.sendRequest('tutorials-message-center#Cat list')
+      .then((cats) => {
+        console.log(`Got ${cats.length} cat(s).`);
+      })
+      .catch((err) => {
+        console.error('Failed to get the cat list:', err);
+      });
+    }
+
+    Polymer({
+      is: 'tutorials-message-center-app',
+
+      ready: function() {
+        const messageCenter = this.$.messageCenter;
+        getBitsSystemId(messageCenter);
+        getCatList(messageCenter);
+      }
+    });
+  })();
+  </script>
+</dom-module>

@@ -1,0 +1,16 @@
+{
+  "name": "tutorials-message-center",
+  "version": "1.0.0",
+  "dependencies": {
+    "bits-base": "^2.0.0"
+  },
+  "contentElement": "tutorials-message-center-app",
+  "contentImport": "/elements/tutorials-message-center-app/tutorials-message-center-app.html",
+  "appDir": "app",
+  "scopes": [
+    {"name": "public", "displayName": "Public"}
+  ],
+  "displayName": "Tutorials Message Center",
+  "icon": "communication:forum",
+  "category": "Tutorials"
+}
