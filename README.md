@@ -11,7 +11,7 @@ This tutorial shows how to use the MessageCenter subsystem in the BITS stack.
 
 # <a name="objective"></a> Objective
 - General understanding of the MessageCenter subsystem.
-- Create requests from the UI and a modules runtime.
+- Create requests from the UI and a module's runtime.
 - Create a request listener.
 - Send an event.
 - Listen for events.
@@ -90,7 +90,7 @@ The example above creates a request from a BITS module to a BITS Base service fo
   </script>
 </dom-module>
 ```
-Now when the `tutorials-message-center` page is loaded in the UI, the developer console (the console within the browser, often accessed by pressing F12) will log the system id. A request that is made from a BITS module can be made with `metadata`. The `metadata` describes the client making the request and can be used service to adjust the response of the request. Requests made from the UI automatically add the `metadata` for the authenticated user making the request. A request may also include `data` which the service can use to handle the request. To send `data` in a request add the `data` parameter to the `sendRequest` function call. For example, a request to add a user using `null` for `metadata` could look like this:
+Now when the `tutorials-message-center` page is loaded in the UI, the developer console (the console within the browser, often accessed by pressing F12) will log the system id. A request that is made from a BITS module can be made with `metadata`. The `metadata` describes the client making the request and can be used by the service to adjust the response of the request. Requests made from the UI automatically add the `metadata` for the authenticated user making the request. A request may also include `data` which the service can use to handle the request. To send `data` in a request add the `data` parameter to the `sendRequest` function call. For example, a request to add a user using `null` for `metadata` could look like this:
 ``` javascript
 function addUserBob(messageCenter) {
   const data = {
@@ -118,7 +118,7 @@ function addUserBobFromUI(messageCenter) {
 ```
 
 # <a name="step-2"></a> Step 2: Add Request Listener
-A request is handled by a request listener. A BITS module can add request listeners by calling the `addRequestListener` function on an instance of MessageCenter. When adding a request listener the module must specify the `event`, the `metadata`, and the `listener`. The `event` is the name of the request the `listener` will handle. The `metadata` defines access controls for the request. The `listener` is the function that is called when a request is made. The `listener` function is called with request `metadata` as the first parameter. For example, this a simple request listener for providing a list of cats:
+A request is handled by a request listener. A BITS module can add request listeners by calling the `addRequestListener` function on an instance of MessageCenter. When adding a request listener the module must specify the `event`, the `metadata`, and the `listener`. The `event` is the name of the request the `listener` will handle. The `metadata` defines access controls for the request. The `listener` is the function that is called when a request is made. The `listener` function is called with request `metadata` as the first parameter. For example, this is a simple request listener for providing a list of cats:
 ``` javascript
 const cats = [
   {type: 'Somali', name: 'Moe', age: 9}
@@ -181,7 +181,7 @@ function CatCreate(metadata, data) {
   return Promise.resolve();
 }
 ```
-It is important to remove a request listener when a service is no longer able to handle requests. This typically occurrs when a service or module is unloaded. To remove a request listener call the `removeRequestListener` function on an instance of MessageCenter. For example, removing the request listener for listing and creating a cat when the module unloads may look like this:
+It is important to remove a request listener when a service is no longer able to handle requests. This typically occurs when a service or module is unloaded. To remove a request listener call the `removeRequestListener` function on an instance of MessageCenter. For example, removing the request listener for listing and creating a cat when the module unloads may look like this:
 ``` javascript
 class App {
 
@@ -224,7 +224,7 @@ load(messageCenter) {
 ```
 
 # <a name="step-4"></a> Step 4: Add Event Listener
-A client can listen for an event by adding an event listener. An event listener an be added by calling the `addEventListener` function on an instance of MessageCenter. For example, a module can listen for the event that is sent when the BITS Base is initialized:
+A client can listen for an event by adding an event listener. An event listener can be added by calling the `addEventListener` function on an instance of MessageCenter. For example, a module can listen for the event that is sent when the BITS Base is initialized:
 ``` javascript
 function onInitialized() {
   console.log('Base is initialized');
