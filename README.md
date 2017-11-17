@@ -132,7 +132,7 @@ Now add the request listener by calling `addRequestListener`.
 class App
   load(messageCenter) {
     return getBitsSystemId(messageCenter)
-    .then(() => messageCenter.addRequestListener('tutorial-message-center#Cat list', {scopes: ['public']}, CatList));
+    .then(() => messageCenter.addRequestListener('tutorials-message-center#Cat list', {scopes: ['public']}, CatList));
   }
   ...
 ```
